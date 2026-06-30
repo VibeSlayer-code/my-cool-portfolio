@@ -52,8 +52,10 @@ export default function App() {
         <ProfileCard />
       </div>
 
-      <Section title="Projects" />
-      <Section title="About" />
+      <Section
+        title="About"
+        description="Hi, i am vibeslayer, i love to code and reverse engineer!"
+      />
 
       <MusicPlayer />
     </main>
