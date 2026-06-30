@@ -11,10 +11,8 @@ export type SocialLink = {
 };
 
 export const socials: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/vibeslayer", icon: FaGithub, ariaLabel: "Open vibeslayer on GitHub" },
-  { label: "Discord", href: "https://discord.gg/replace-me", icon: FaDiscord, ariaLabel: "Open vibeslayer Discord" },
-  { label: "Instagram", href: "https://instagram.com/vibeslayer", icon: FaInstagram, ariaLabel: "Open vibeslayer on Instagram" },
-  { label: "X", href: "https://x.com/vibeslayer", icon: FaXTwitter, ariaLabel: "Open vibeslayer on X" },
-  { label: "YouTube", href: "https://youtube.com/@vibeslayer", icon: FaYoutube, ariaLabel: "Open vibeslayer on YouTube" },
-  { label: "Email", href: "mailto:hello@vibeslayer.dev", icon: MdEmail, ariaLabel: "Email vibeslayer" },
+  { label: "GitHub", href: "https://github.com/VibeSlayer-code", icon: FaGithub, ariaLabel: "Open vibeslayer on GitHub" },
+  { label: "Discord", href: "https://discord.gg/users/1330507577720574045", icon: FaDiscord, ariaLabel: "Open vibeslayer Discord" },
+  { label: "YouTube", href: "https://youtube.com/@Realvibeslayer", icon: FaYoutube, ariaLabel: "Open vibeslayer on YouTube" },
+  { label: "Email", href: "mailto:hello@vibeslayer.space", icon: MdEmail, ariaLabel: "Email vibeslayer" },
 ];

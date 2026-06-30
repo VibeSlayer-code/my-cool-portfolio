@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { FiMusic, FiPause, FiPlay, FiSkipBack, FiSkipForward } from "react-icons/fi";
+import { FiMusic, FiPause, FiPlay, FiSkipBack, FiSkipForward, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { fetchSyncedLyrics, type LyricLine } from "../data/lyrics";
 import { thumbnailFor, tracks } from "../data/tracks";
 
@@ -40,6 +40,7 @@ export default function MusicPlayer() {
   const [lyrics, setLyrics] = useState<LyricLine[]>([]);
   const [lyricsStatus, setLyricsStatus] = useState<LyricsStatus>("idle");
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [volume, setVolume] = useState(VOLUME);
 
   const mountRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<YouTubePlayer | null>(null);
@@ -164,6 +165,12 @@ export default function MusicPlayer() {
     else player.playVideo();
   };
 
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value);
+    setVolume(val);
+    playerRef.current?.setVolume(val);
+  };
+
   const seek = (event: React.MouseEvent<HTMLDivElement>) => {
     const player = playerRef.current;
     if (!player || duration <= 0) return;
@@ -251,6 +258,30 @@ export default function MusicPlayer() {
               <button type="button" aria-label="Next track" onClick={nextTrack} className="music-btn h-8 w-8">
                 <FiSkipForward className="h-4 w-4" />
               </button>
+            </div>
+
+            <div className="mt-3 flex items-center gap-2">
+              <button
+                type="button"
+                aria-label={volume === 0 ? "Unmute" : "Mute"}
+                onClick={() => {
+                  const next = volume === 0 ? VOLUME : 0;
+                  setVolume(next);
+                  playerRef.current?.setVolume(next);
+                }}
+                className="music-btn shrink-0"
+              >
+                {volume === 0 ? <FiVolumeX className="h-3.5 w-3.5" /> : <FiVolume2 className="h-3.5 w-3.5" />}
+              </button>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={volume}
+                onChange={handleVolumeChange}
+                className="h-1 w-full cursor-pointer accent-zinc-100"
+                aria-label="Volume"
+              />
             </div>
 
             <AnimatedLyrics
